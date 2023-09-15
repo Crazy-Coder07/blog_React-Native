@@ -3,7 +3,7 @@ import React ,{useState}from 'react'
 import InputBox from '../../Components/Forms/InputBox'
 import SubmitButton from '../../Components/Forms/SubmitButton'
 
-const Register = () => {
+const Register = ({navigation}) => {
     const [name,setName]=useState("")
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -56,7 +56,7 @@ const Register = () => {
               handleSubmit={handleSubmit}
             />
             <Text style={styles.linkText}>
-                Already Register Please <Text style={styles.link}>Login</Text>
+                Already Register Please <Text style={styles.link} onPress={()=>navigation.navigate("Login")}>Login</Text>
             </Text>
         </View>
     )
