@@ -1,10 +1,15 @@
 import { View, Text, StyleSheet, TextInput, Alert } from 'react-native'
-import React ,{useState}from 'react'
+import React ,{useContext,useState}from 'react'
 import InputBox from '../../Components/Forms/InputBox'
 import SubmitButton from '../../Components/Forms/SubmitButton'
 import axios from 'axios'
+import { AuthContext } from '../../ContextApi/authContext'
 
 const Register = ({ navigation }) => {
+
+  // global state
+  const [state,setState]=useContext(AuthContext);
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -20,7 +25,9 @@ const Register = ({ navigation }) => {
         return;
       }
       setLoading(false);
-      const {data} = await axios.post("http://10.0.0.80:8080/api/v1/auth/register", { name, email, password });
+      setState(data);
+      const {data} = await axios.post("/auth/register", { name, email, password });
+      navigation.navigate("Login");
       Alert.alert(data && data.message)
       console.log("Register Data: ",{name,email,password})
     } catch (error) {

@@ -1,12 +1,17 @@
 import { View, Text, StyleSheet, TextInput, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useContext} from 'react'
 import InputBox from '../../Components/Forms/InputBox'
 import SubmitButton from '../../Components/Forms/SubmitButton'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { AuthContext } from '../../ContextApi/authContext'
 
 
 const Login = ({ navigation }) => {
+    
+    // global state
+    const [state, setState] = useContext(AuthContext);
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -20,8 +25,10 @@ const Login = ({ navigation }) => {
                 return;
             }
             setLoading(false);
-            const { data } = await axios.post("http://10.0.0.80:8080/api/v1/auth/login", {email, password });
+            const { data } = await axios.post("/auth/login", {email, password });
+            setState(data);
             Alert.alert(data && data.message)
+            navigation.navigate("Home")
             await AsyncStorage.setItem("@auth", JSON.stringify(data))
             console.log("Login Data ==>", { email, password })
         } catch (error) {
