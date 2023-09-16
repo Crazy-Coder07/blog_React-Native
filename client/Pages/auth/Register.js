@@ -2,28 +2,34 @@ import { View, Text, StyleSheet, TextInput, Alert } from 'react-native'
 import React ,{useState}from 'react'
 import InputBox from '../../Components/Forms/InputBox'
 import SubmitButton from '../../Components/Forms/SubmitButton'
+import axios from 'axios'
 
-const Register = ({navigation}) => {
-    const [name,setName]=useState("")
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
-    const [loading,setLoading]=useState(false)
+const Register = ({ navigation }) => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
-    const handleSubmit=()=>{
-        try{
-          setLoading(true)
-          if(!name||!email||!password){
-            Alert.alert("Please Fill All Fileds")
-            setLoading(false)
-            return;
-          }
-          setLoading(false);
-        //   console.log("Register Data ==>",{name,email,password})
-        }catch(error){
-            setLoading(false)
-            console.log(error)
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      if (!name || !email || !password) {
+        Alert.alert("Please Fill All Fields");
+        setLoading(false);
+        return;
+      }
+      setLoading(false);
+      const {data} = await axios.post("http://10.0.0.80:8080/api/v1/auth/register", { name, email, password });
+      Alert.alert(data && data.message)
+      console.log("Register Data: ",{name,email,password})
+    } catch (error) {
+      Alert.alert(error.response.data.message);
+      setLoading(false);
+      console.log(error);
     }
+  }
+  
 
     return (
         <View style={styles.container}>
@@ -56,7 +62,7 @@ const Register = ({navigation}) => {
               handleSubmit={handleSubmit}
             />
             <Text style={styles.linkText}>
-                Already Register Please <Text style={styles.link} onPress={()=>navigation.navigate("Login")}>Login</Text>
+                Already Registered Please <Text style={styles.link} onPress={()=>navigation.navigate("Login")}>Login</Text>
             </Text>
         </View>
     )
