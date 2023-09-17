@@ -29,7 +29,6 @@ const Register = ({ navigation }) => {
       const {data} = await axios.post("/auth/register", { name, email, password });
       navigation.navigate("Login");
       Alert.alert(data && data.message)
-      console.log("Register Data: ",{name,email,password})
     } catch (error) {
       Alert.alert(error.response.data.message);
       setLoading(false);
