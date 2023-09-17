@@ -6,6 +6,9 @@ import Login from '../../Pages/auth/Login'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { AuthContext } from '../../ContextApi/authContext'
 import HeaderMenu from './HeaderMenu'
+import Post from '../../Pages/Post'
+import About from '../../Pages/About'
+import Account from '../../Pages/Account'
 
 const ScreenMenu = () => {
 
@@ -21,6 +24,15 @@ const ScreenMenu = () => {
           <>
             <Stack.Screen name="Home" component={Home} 
                options={{title:"BlogEase",headerRight:()=><HeaderMenu/>}} 
+            />
+            <Stack.Screen name="Post" component={Post} 
+               options={{headerBackTitle:"Back",headerRight:()=><HeaderMenu/>}} 
+            />
+            <Stack.Screen name="About" component={About} 
+               options={{headerBackTitle:"Back",headerRight:()=><HeaderMenu/>}} 
+            />
+            <Stack.Screen name="Account" component={Account} 
+               options={{headerBackTitle:"Back",headerRight:()=><HeaderMenu/>}} 
             />
           </>) : (
             <>
