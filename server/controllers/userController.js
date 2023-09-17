@@ -89,4 +89,38 @@ const loginController=async(req,res)=>{
       })
    }
 }
-module.exports={registerController,loginController};
+
+// update user
+const updateController =async(req,res)=>{
+    try{
+        const {name,password,email}=req.body;
+        // find existing user
+        const user=await userModel.findOne({email});  
+        // password validation
+        if(password){
+            if(password.length <4){
+                return res.status(400).send({
+                    success:false,
+                    message:"password must be atleast 4 character long"
+                 })  
+            }
+        }
+      const hashedPassword = password? await hashPassword(password):undefined;
+      //  updated user
+      const updatedUser=await userModel.findOneAndUpdate({email},{name:name||user.name,password:hashedPassword||user.password},{new:true});
+      updatedUser.password=undefined;
+      
+      res.status(200).send({
+        success:true,
+        message:"Profile updated successfully please Login",
+        user:updatedUser
+      }) 
+    }catch(error){
+      return res.status(500).send({
+         success:false,
+         message:"Error in Update Api",
+         error
+       })
+    }
+}
+module.exports={registerController,loginController,updateController};
