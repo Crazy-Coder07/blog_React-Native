@@ -14,6 +14,7 @@ const AuthProvider = ({children}) => {
     });
    
     // default axios settings
+    axios.defaults.headers.common["Authorization"]=`Bearer ${state.token}`;
     axios.defaults.baseURL="http://10.0.0.80:8080/api/v1"
     // inital local storage data
     useEffect(() => {

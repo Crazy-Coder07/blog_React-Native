@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/api/v1/auth",require("./routes/userRoute"));
+app.use("/api/v1/post",require("./routes/postRoute"));
 
 const PORT=process.env.PORT || 8080;
 

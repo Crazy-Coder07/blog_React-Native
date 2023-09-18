@@ -2,7 +2,8 @@ const express=require("express");
 const { 
     registerController,
     loginController,
-    updateController, 
+    updateController,
+    requireSignIn, 
 } = require("../controllers/userController");
 
 // router object
@@ -12,6 +13,6 @@ const router=express.Router();
 router.post('/register',registerController)
 router.post('/login',loginController);
 // update user pofile
-router.put('/update-user',updateController);
+router.put('/update-user',requireSignIn,updateController);
 
 module.exports=router;
