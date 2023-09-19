@@ -46,4 +46,24 @@ const getAllPostController= async(req,res)=>{
    }
 }
 
-module.exports={createPostController, getAllPostController};
+// get user posts 
+const getUserPostController= async(req,res)=>{
+  try{
+    // find user posts on the basis of their posts from database model postModel
+    const userposts=await postModel.find({postedBy:req.auth._id});
+      res.status(200).send({
+        success:true,
+        message:"user Posts  Successfully",
+        userposts
+      })
+  }catch(error){
+    console.log(error);
+    res.status(500).send({
+      success:false,
+      message:"Error in User Posts Api",
+      error
+    })
+  }
+}
+
+module.exports={createPostController, getAllPostController,getUserPostController};

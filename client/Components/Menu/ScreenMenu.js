@@ -9,6 +9,7 @@ import HeaderMenu from './HeaderMenu'
 import Post from '../../Pages/Post'
 import About from '../../Pages/About'
 import Account from '../../Pages/Account'
+import Myposts from '../../Pages/Myposts'
 
 const ScreenMenu = () => {
 
@@ -34,13 +35,15 @@ const ScreenMenu = () => {
             <Stack.Screen name="Account" component={Account} 
                options={{headerBackTitle:"Back",headerRight:()=><HeaderMenu/>}} 
             />
+            <Stack.Screen name="Myposts" component={Myposts} 
+               options={{headerBackTitle:"Back",headerRight:()=><HeaderMenu/>}} 
+            />
           </>) : (
             <>
               <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             </>
           )}
-          
     </Stack.Navigator>
   )
 }
