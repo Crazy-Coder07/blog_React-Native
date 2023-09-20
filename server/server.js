@@ -17,6 +17,13 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth",require("./routes/userRoute"));
 app.use("/api/v1/post",require("./routes/postRoute"));
 
+// for production use
+app.get("/",(req,res)=>{
+  res.status(200).send({
+    "success": true,
+    "message": "Server is running"
+  })
+})
 const PORT=process.env.PORT || 8080;
 
 app.listen(PORT,()=>{
