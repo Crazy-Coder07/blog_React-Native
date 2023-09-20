@@ -37,7 +37,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
+    marginBottom:1,
     justifyContent: "space-between",
   },
 });

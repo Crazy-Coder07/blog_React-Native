@@ -30,7 +30,6 @@ const Myposts = () => {
     <View style={styles.container}>
       <ScrollView>
         <PostCard posts={posts} myPostScreen={true}/>
-        {/* <Text>{JSON.stringify(posts, null, 4)}</Text> */}
       </ScrollView>
       <View style={{backgroundColor:"#ffffff"}}>
          <FooterMenu/>
@@ -42,7 +41,7 @@ const Myposts = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      margin: 10,
+      margin: 0,
       justifyContent: 'space-between',
     }
   })

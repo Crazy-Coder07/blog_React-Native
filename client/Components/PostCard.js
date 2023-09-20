@@ -59,7 +59,7 @@ const PostCard = ({ posts, myPostScreen }) => {
               <Text style={{marginHorizontal:20 }}>
                 <FontAwesome5
                   name="pen"
-                  size={15}
+                  size={16}
                   color={"darkblue"}
                   onPress={() => {setPost(post),setModalVisible(true)}}
                 />
@@ -67,7 +67,7 @@ const PostCard = ({ posts, myPostScreen }) => {
               <Text>
                 <FontAwesome5
                   name="trash"
-                  size={15}
+                  size={16}
                   color={"red"}
                   onPress={() => handleDeletePropmt(post?._id)}
                 />
@@ -101,13 +101,14 @@ const styles = StyleSheet.create({
   heading: {
     color: "green",
     textAlign: "center",
+    marginTop: 4,
   },
   Card: {
     width: "97%",
     backgroundColor: "#FFFFFF",
     borderWidth: 0.2,
     borderColor: "gray",
-    padding: 20,
+    padding: 14,
     borderRadius: 5,
     marginVertical: 5,
   },
@@ -115,15 +116,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingBottom: 10,
     borderBottomWidth: 0.3,
+    marginTop:-5
   },
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: 4,
   },
   desc: {
-    marginTop: 10,
-
+    marginTop: 5,
   }
 })
 
