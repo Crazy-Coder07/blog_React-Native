@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   Card: {
     width: "97%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#17dafc",
     borderWidth: 0.2,
     borderColor: "gray",
     padding: 14,
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     paddingBottom: 10,
+    color: "red",
     borderBottomWidth: 0.3,
     marginTop:-5
   },
